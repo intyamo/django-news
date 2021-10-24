@@ -1,0 +1,20 @@
+<!--templates/article_details.html-->
+{% extends 'base.html' %}
+
+{% block title %}V. Pupkin Daily{% endblock title %}
+
+{% block content %}
+
+<div>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.body | linebreaks }}</p>
+</div>
+
+{% if article.author == request.user %}
+<p><a href="{% url 'article_edit' article.pk %}">📝 Edit</a> | <a href="{% url 'article_delete' article.pk %}">❌
+    Delete</a>
+    {% endif %}
+
+<p>Back to <a href="{% url 'home' %}">homepage</a></p>
+
+{% endblock content %}

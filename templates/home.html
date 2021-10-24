@@ -1,7 +1,7 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}V. Pupkin Daily{% endblock title %}
 
 {% block content %}
 
@@ -13,6 +13,18 @@
     {% else %}
     <a href="{% url 'login' %}">Log in</a> | <a href="{% url 'signup' %}">Sign up</a>
     {% endif %}
+
+    <p><a href="{% url 'article_create' %}">+ New Article</a></p>
 </div>
+<hr>
+
+{% for article in object_list %}
+<div><a href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
+    by {{ article.author }}
+    | {{ article.date }}
+</div>
+<p>{{ article.body }}</p>
+<hr>
+{% endfor %}
 
 {% endblock content %}
