@@ -6,13 +6,18 @@
 {% block content %}
 
 {% for article in object_list %}
-<div><a href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
-    by {{ article.author }}
-    | {{ article.date }}
-    ({{ article.comments.count }} comments)
+<div class="card">
+    <div class="card-header">
+        <a class="font-weight-bold" href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
+        <span class="text-muted"> by {{ article.author }}
+            | {{ article.date }}</span>
+    </div>
+
+    <div class="card-body">{{ article.body | truncatewords_html:25 | linebreaks }}</div>
+
+    <div class="card-footer text-center text-muted"><span>{{ article.comments.count }} comments</span></div>
 </div>
-<p>{{ article.body | truncatewords_html:25 | linebreaks }}</p>
-<hr><br>
+<br>
 {% endfor %}
 
 {% endblock content %}
