@@ -5,19 +5,6 @@
 
 {% block content %}
 
-<div>
-    {% if user.is_authenticated %}
-    {{ user.username }} (<a href="{% url 'logout' %}">Log out</a>
-    | <a href="{% url 'password_change' %}">Change password</a>
-    | <a href="{% url 'password_reset' %}">Reset password</a>)
-    {% else %}
-    <a href="{% url 'login' %}">Log in</a> | <a href="{% url 'signup' %}">Sign up</a>
-    {% endif %}
-
-    <p><a href="{% url 'article_create' %}">+ New Article</a></p>
-</div>
-<hr>
-
 {% for article in object_list %}
 <div><a href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
     by {{ article.author }}
