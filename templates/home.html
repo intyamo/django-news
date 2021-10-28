@@ -22,9 +22,10 @@
 <div><a href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
     by {{ article.author }}
     | {{ article.date }}
+    ({{ article.comments.count }} comments)
 </div>
-<p>{{ article.body }}</p>
-<hr>
+<p>{{ article.body | truncatewords_html:25 | linebreaks }}</p>
+<hr><br>
 {% endfor %}
 
 {% endblock content %}

@@ -15,6 +15,17 @@
     Delete</a>
     {% endif %}
 
+<hr>
+<div>
+    <h5>{{ article.comments.count }} Comment(s)</h5>
+    {% for comment in article.comments.all %}
+    <p>{{ comment }}</p>
+    {% endfor %}
+
+    <p><a href="{% url 'comment_create' article.id %}">+ New Comment</a></p>
+</div>
+<hr>
+
 <p>Back to <a href="{% url 'home' %}">homepage</a></p>
 
 {% endblock content %}
