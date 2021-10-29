@@ -5,17 +5,23 @@
 
 {% block content %}
 
-<div>
-    <h2>{{ article.title }}</h2>
-    <p>{{ article.body | linebreaks }}</p>
+<div class="card">
+    <div class="card-header">
+        <a class="font-weight-bold" href="{% url 'article_details' article.id %}">{{ article.title }}</a> &middot;
+        <span class="text-muted"> by {{ article.author }}
+            | {{ article.date }}</span>
+    </div>
+
+    <div class="card-body">{{ article.body | safe | linebreaks }}</div>
+    <div class="card-footer text-center">
+        {% if article.author == request.user %}
+        <a class="btn btn-primary btn-sm" href="{% url 'article_edit' article.pk %}">📝 Edit</a>
+        <a class="btn btn-danger btn-sm" href="{% url 'article_delete' article.pk %}">🗑 Delete</a>
+        {% endif %}
+    </div>
 </div>
 
-{% if article.author == request.user %}
-<p><a href="{% url 'article_edit' article.pk %}">📝 Edit</a> | <a href="{% url 'article_delete' article.pk %}">❌
-    Delete</a>
-    {% endif %}
-
-<hr>
+<br>
 <div>
     <h5>{{ article.comments.count }} Comment(s)</h5>
     {% for comment in article.comments.all %}

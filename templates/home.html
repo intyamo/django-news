@@ -13,7 +13,7 @@
             | {{ article.date }}</span>
     </div>
 
-    <div class="card-body">{{ article.body | truncatewords_html:25 | linebreaks }}</div>
+    <div class="card-body">{{ article.body | truncatewords_html:25 | safe | linebreaks }}</div>
 
     <div class="card-footer text-center text-muted"><span>{{ article.comments.count }} comments</span></div>
 </div>
