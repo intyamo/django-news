@@ -20,6 +20,10 @@
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
             crossorigin="anonymous"></script>
 
+    <!--    select2 widget settings-->
+    {{ form.media.css }}
+    <style>form select, input, p, span { width: 100%; }</style>
+    <style>form span { text-align: right; text-align-last: center; }</style>
 </head>
 
 <body>
@@ -28,10 +32,13 @@
     <a class="navbar-brand" href="{% url 'home' %}">V. Pupkin Daily</a>
 
     {% if user.is_authenticated %}
-    <!--    New article url-->
+    <!-- User actions: new article, new comment -->
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a href="{% url 'article_create' %}">+ New article</a>
+            <a class="nav-link" href="{% url 'article_create' %}">+ New article</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'comment_create_alt' %}">+ New comment</a>
         </li>
     </ul>
 
@@ -67,5 +74,7 @@
         {% endblock content %}
     </div>
 </main>
+<!--needed for select2 widget-->
+{{ form.media.js }}
 </body>
 </html>
